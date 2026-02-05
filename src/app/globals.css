@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@theme{
+  --color-accent-1 :#dabf8a;
+  --color-accent-2 :#c97a4e;
+}
+@custom-variant dark (&:where(.dark, .dark *));
+/* ================================
+   🌙 Default Theme = Dark
+   ================================ */
+:root {
+  /* Backgrounds */
+  --bg-primary: #1d1a1b;
+  --bg-secondary: #272427;
+  --bg-tertiary: #312e33;
+
+  /* Surfaces (cards, panels, glassmorphism layers) */
+  --surface-1: #403d45;
+  --surface-2: #45424b;
+  --surface-3: #4a484b;
+
+  /* Text */
+  --text-primary: #f5f2e9;  /* main readable text */
+  --text-secondary: #cccccc; /* subdued text */
+  --text-muted: #999999; /* less emphasis */
+  --text-inverse: #1d1a1b; /* used when background is light */
+
+  /* Accents */
+  --accent-1: #dabf8a; /* golden yellow */
+  --accent-2: #c97a4e; /* warm orange */
+  --accent-3: #c2d6c7; /* mint green */
+  --accent-4: #ede0c8; /* cream buff */
+  --accent-5: #6d5c4a; /* earthy brown */
+
+  /* background-color: rgba(255, 255, 255, 0.2); */
+}
+
+/* ================================
+   ☀️ Light Theme Override
+   ================================ */
+.light {
+  /* Backgrounds */
+  --bg-primary: #f5f5f5;
+  --bg-secondary: #eaeaea;
+  --bg-tertiary: #dddddd;
+
+  /* Surfaces */
+  --surface-1: #cccccc;
+  --surface-2: #bbbbbb;
+  --surface-3: #aaaaaa;
+
+  /* Text */
+  --text-primary: #1d1a1b; /* dark readable text */
+  --text-secondary: #444444;
+  --text-muted: #666666;
+  --text-inverse: #f5f2e9; /* used on dark surfaces */
+
+  /* Accents (slightly adjusted for light mode) */
+  --accent-1: #e8c98a;
+  --accent-2: #e49a6a;
+  --accent-3: #ddebe0;
+  --accent-4: #f8ecd9;
+  --accent-5: #8a6d55;
+
+  /* background-color: rgba(0, 0, 0, 0.2); */
+}
+
+/* ================================
+   🌌 Base Layout Styles
+   ================================ */
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100%; /* fallback */
+
+  /* Layered gradient background */
+  background: 
+    radial-gradient(ellipse at center top, var(--bg-secondary) 0%, var(--surface-1) 25%, var(--bg-tertiary) 50%, var(--bg-secondary) 75%, var(--bg-primary) 100%),
+    linear-gradient(135deg, var(--surface-1) 0%, var(--surface-2) 30%, var(--surface-3) 60%, var(--bg-secondary) 100%);
+  
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-blend-mode: overlay;
+  position: relative;
+
+  /* Default text color */
+  color: var(--text-primary);
+}
+
+/* Noise overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url('/assets/noise.webp');
+  background-repeat: repeat;
+  opacity: 0.1;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Cracked stone overlay */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url('/assets/crackedstone.jfif');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.25;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.light body::after {
+  opacity: 0.05; /* lighter than 0.25 in dark mode */
+}
+
