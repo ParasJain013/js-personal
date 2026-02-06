@@ -18,7 +18,7 @@ export default function HomePage() {
                 Subcategories
             </h1>
             <CenterFocusedCarousel />
-            {/* <ProductCarousel /> */}
+            <ProductCarousel />
 
             {/* Contact Us Section with Custom Layout */}
             <section className="py-16 px-4">
